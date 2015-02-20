@@ -36,14 +36,14 @@ names(test)[2] <- "Label"
 total <- rbind(train,test)
 for (i in 1:30) {
   for (a in 1:6) {
-    subset1 <- subset(total, Subject==i) ## We subset the data for each subject
-    subset2 <- subset(subset1, Label==actlabels$V2[a]) ## Then we subset subject data again for each activity
+    subset1 <- subset(total, Subject==i) # We subset the data for each subject
+    subset2 <- subset(subset1, Label==actlabels$V2[a]) # Then we subset subject data again for each activity
     row.names(subset2) <- NULL
-    subs4 <- sapply(subset2[3:length(subset2)],mean) ## We count averages               
-    subs4 <- as.data.frame(t(subs4)) ## Transpose data to move variables to columns
-    subs4 <- cbind(subset2[1,1:2],subs4) ## Add subject and activity
+    subs4 <- sapply(subset2[3:length(subset2)],mean) # We count averages               
+    subs4 <- as.data.frame(t(subs4)) # Transpose data to move variables to columns
+    subs4 <- cbind(subset2[1,1:2],subs4) # Add subject and activity
     if (i==1 && a==1) {total1 <- subs4} else
-      total1 <- rbind(total1,subs4) ## Add a line to the final dataset
+      total1 <- rbind(total1,subs4) # Add a line to the final dataset
   }
 }
 write.table (total1, "dataset.txt", row.names=F)
